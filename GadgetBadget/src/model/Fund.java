@@ -55,6 +55,7 @@ public class Fund {
 		}catch(Exception e) {
 			output = "Error while reading the info";
 			System.err.println(e.getMessage());
+			System.out.println(e);
 		}
 		return output;
 	}
