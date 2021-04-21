@@ -5,13 +5,18 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("Funds")
+import model.Fund;
+
+@Path("/Funds")
 public class FundService {
-	@GET
+	
+	Fund fund = new Fund();
+
+	@GET	
 	@Path("/")
 	@Produces(MediaType.TEXT_HTML)
-	public String readItems()
-	{
-		return "Hello World";
+	public String readItem(){
+		return fund.readItems();
 	}
+	
 }
