@@ -19,6 +19,7 @@ public class Research {
 			return con;
 		}
 		
+		//-------insert------
 		public String insertResearch(String rName, String rPhone, String rEmail, String rAddress, String projectName, String rCost)
 		{
 			String output = "";
@@ -54,6 +55,7 @@ public class Research {
 			return output;
 		}
 		
+		//---------read-------
 		public String readResearch()
 		 {
 		 String output = "";
@@ -110,7 +112,7 @@ public class Research {
 		 return output;
 		 }
 		
-		
+		//------update-----
 		public String updateResearch(String RID, String rName, String rPhone, String rEmail, String rAddress,String projectName,String rCost)
 		{
 			 String output = "";
@@ -142,7 +144,10 @@ public class Research {
 			 }
 			 return output;
 			 }
-			public String deleteItem(String RID)
+		
+		
+		//------delete------
+			public String deleteResearch(String RID)
 			 {
 			 String output = "";
 			 try
