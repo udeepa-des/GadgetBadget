@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 public class Fund {
 	
-	public Connection connect() {
+	private Connection connect() {
 		Connection con = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -61,7 +61,7 @@ public class Fund {
 		return output;
 	}
 	
-	public String insertFunds(String companyName,int researchid, String researchName, float investAmount, String description) {
+	public String insertFunds(String companyName,String researchid, String researchName, String investAmount, String description) {
 		String output = "" ;
 		try {
 			Connection con = connect();
@@ -71,9 +71,9 @@ public class Fund {
 			String query = "insert into funds (companyName,researchid,researchName,investAmount,description) values(?,?,?,?,?) ";
 			PreparedStatement pst = con.prepareStatement(query);
 			pst.setString(1,companyName);
-			pst.setInt(2,researchid);
+			pst.setInt(2,Integer.parseInt(researchid));
 			pst.setString(3, researchName);
-			pst.setFloat(4, investAmount);
+			pst.setFloat(4, Float.parseFloat(investAmount));
 			pst.setString(5, description);
 			pst.executeUpdate();
 			con.setAutoCommit(false);
@@ -82,6 +82,31 @@ public class Fund {
 		}catch(Exception e) {
 			output ="Error while inserting the item.";
 			System.err.println(e.getMessage());
+		}
+		
+		return output;
+	}
+	
+	public String updateFunds(String ID,String companyName,String researchid, String researchName, String investAmount, String description) {
+		String output = "";
+		Connection con = connect();
+		
+		try {
+			
+			if(con == null) {
+				return "Error while connecting to the database for updating.";
+			}
+			
+			String query = "update funds set companyName=?, researchid=?, researchName=?, investAmount=?, description=?"
+					+ " where id=?";
+			
+			PreparedStatement ptsmt = con.prepareStatement(query);
+			
+			
+			
+		}catch(Exception e) {
+			output = "Error while inserting the item.";
+			System.err.print(e.getMessage());
 		}
 		
 		return output;

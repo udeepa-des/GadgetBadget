@@ -27,9 +27,9 @@ public class FundService {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String insertData(@FormParam("companyName") String companyName,
-			@FormParam("researchID") int researchID,
+			@FormParam("researchID") String researchID,
 			@FormParam("researcherName") String researcherName,
-			@FormParam("investAmount") float investAmount,
+			@FormParam("investAmount") String investAmount,
 			@FormParam("description") String description) {
 		String output = fund.insertFunds(companyName, researchID, researcherName, investAmount, description);
 		return output;
