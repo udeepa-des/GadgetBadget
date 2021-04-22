@@ -40,7 +40,7 @@ public class Fund {
 				String companyName = rs.getString("companyName");
 				String researchID = Integer.toString(rs.getInt("researchid"));
 				String researchName = rs.getString("researchName");
-				String invetmentAmount = Float.toString(rs.getFloat("investAmount"));
+				String invetmentAmount = Double.toString(rs.getDouble("investAmount"));
 				String description = rs.getString("description"); 
 				
 				output += "<tr><td>"+ID+"</td>";
@@ -113,6 +113,8 @@ public class Fund {
 			con.setAutoCommit(false);
 			con.commit();
 			output = "Updated successfully.";
+			
+			
 			
 		}catch(Exception e) {
 			output = "Error while inserting the item.";
