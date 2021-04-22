@@ -117,7 +117,34 @@ public class Fund {
 			
 			
 		}catch(Exception e) {
-			output = "Error while inserting the item.";
+			output = "Error while updating the Funds.";
+			System.err.print(e.getMessage());
+		}
+		
+		return output;
+	}
+	
+	public String deleteFund(String id) {
+		String output = "";
+		try {
+			Connection con = connect();
+			if(con==null) {
+				return "Error while connecting to database for deleting.";
+			}
+			
+			String query = "delete from funds where id=?";
+			
+			PreparedStatement pdstmt = con.prepareStatement(query);
+			
+			pdstmt.setInt(1, Integer.parseInt(id));
+			
+			pdstmt.executeUpdate();
+			con.setAutoCommit(false);
+			con.commit();
+			output = "Deleted Successfully";
+			
+		}catch(Exception e) {
+			output = "Error while deleting the Funds.";
 			System.err.print(e.getMessage());
 		}
 		
