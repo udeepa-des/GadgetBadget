@@ -40,7 +40,7 @@ public class Research {
 				preparedStmt.setString(4, rEmail);
 				preparedStmt.setString(5, rAddress);
 				preparedStmt.setString(6, projectName);
-				preparedStmt.setString(7, rCost);
+				preparedStmt.setDouble(7, Double.parseDouble(rCost));
 
 				// execute the statement
 				preparedStmt.execute();
@@ -84,8 +84,7 @@ public class Research {
 		 String rEmail = rs.getString("rEmail");
 		 String rAddress = rs.getString("rAddress");
 		 String projectName = rs.getString("projectName");
-		 String rCost = rs.getString("rCost");
-
+		 String rCost = Double.toString(rs.getDouble("rCost"));
 		 // Add into the html table
 		 output += "<tr><td>" + rName + "</td>";
 		 output += "<td>" + rPhone + "</td>";
@@ -130,7 +129,7 @@ public class Research {
 			 preparedStmt.setString(3, rEmail);
 			 preparedStmt.setString(4, rAddress);
 			 preparedStmt.setString(5, projectName);
-			 preparedStmt.setString(6, rCost);
+			 preparedStmt.setDouble(6, Double.parseDouble(rCost));
 			 preparedStmt.setInt(7, Integer.parseInt(RID));
 			 // execute the statement
 			 preparedStmt.execute();
