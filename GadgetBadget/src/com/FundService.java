@@ -4,9 +4,13 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import model.Fund;
 
@@ -34,5 +38,26 @@ public class FundService {
 		String output = fund.insertFunds(companyName, researchID, researcherName, investAmount, description);
 		return output;
 	}
+	
+	@PUT
+	@Path("/update")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String updateFunds(String fundData) {
+		
+		JsonObject fundObject = new JsonParser().parse(fundData).getAsJsonObject();
+		
+		String id = fundObject.get("id").getAsString();
+		String companyName = fundObject.get("companyName").getAsString();
+		String researchID = fundObject.get("researchID").getAsString();
+		String researcherName = fundObject.get("researcherName").getAsString();
+		String investAmount = fundObject.get("investAmount").getAsString();
+		String description = fundObject.get("description").getAsString();
+		
+		String output = fund.updateFunds(id, companyName, researchID, researcherName, investAmount, description);
+
+		return output;
+	}
+	
 	
 }
