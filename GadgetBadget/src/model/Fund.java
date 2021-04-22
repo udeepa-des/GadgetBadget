@@ -107,7 +107,12 @@ public class Fund {
 			pdstmt.setInt(2,Integer.parseInt(researchid));
 			pdstmt.setString(3, researchName);
 			pdstmt.setDouble(4, Double.parseDouble(investAmount));
-			
+			pdstmt.setString(5, description);
+			pdstmt.setInt(6,Integer.parseInt(ID));
+			pdstmt.executeUpdate();
+			con.setAutoCommit(false);
+			con.commit();
+			output = "Updated successfully.";
 			
 		}catch(Exception e) {
 			output = "Error while inserting the item.";
