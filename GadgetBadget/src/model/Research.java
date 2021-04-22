@@ -155,7 +155,7 @@ public class Research {
 			 if (con == null)
 			 {return "Error while connecting to the database for deleting."; }
 			 // create a prepared statement
-			 String query = "delete from items where RID=?";
+			 String query = "delete from research where RID=?";
 			 PreparedStatement preparedStmt = con.prepareStatement(query);
 			 // binding values
 			 preparedStmt.setInt(1, Integer.parseInt(RID));
