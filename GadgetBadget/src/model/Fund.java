@@ -74,7 +74,7 @@ public class Fund {
 			pst.setString(1,companyName);
 			pst.setInt(2,Integer.parseInt(researchid));
 			pst.setString(3, researchName);
-			pst.setFloat(4, Float.parseFloat(investAmount));
+			pst.setDouble(4, Double.parseDouble(investAmount));
 			pst.setString(5, description);
 			pst.executeUpdate();
 			con.setAutoCommit(false);
@@ -101,8 +101,12 @@ public class Fund {
 			String query = "update funds set companyName=?, researchid=?, researchName=?, investAmount=?, description=?"
 					+ " where id=?";
 			
-			PreparedStatement ptsmt = con.prepareStatement(query);
+			PreparedStatement pdstmt = con.prepareStatement(query);
 			
+			pdstmt.setString(1,companyName);
+			pdstmt.setInt(2,Integer.parseInt(researchid));
+			pdstmt.setString(3, researchName);
+			pdstmt.setDouble(4, Double.parseDouble(investAmount));
 			
 			
 		}catch(Exception e) {
