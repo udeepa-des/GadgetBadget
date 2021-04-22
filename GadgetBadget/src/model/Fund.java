@@ -21,7 +21,7 @@ public class Fund {
 		return con;
 	}
 	
-	public String readItems() {
+	public String readFunds() {
 		String output = "";
 		try {
 			Connection con = connect();

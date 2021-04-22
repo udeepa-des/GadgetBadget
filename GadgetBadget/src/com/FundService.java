@@ -28,7 +28,7 @@ public class FundService {
 	@Path("/")
 	@Produces(MediaType.TEXT_HTML)
 	public String readItem(){
-		return fund.readItems();
+		return fund.readFunds();
 	}
 	
 	@POST
