@@ -2,6 +2,7 @@ package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -60,8 +61,28 @@ public class Fund {
 		return output;
 	}
 	
-	public String insertFunds() {
-		String output = null ;
+	public String insertFunds(String companyName,int researchid, String researchName, float investAmount, String description) {
+		String output = "" ;
+		try {
+			Connection con = connect();
+			if(con == null) {
+				return "Error while connecting to the database for inserting. "; 
+			}
+			String query = "insert into funds (companyName,researchid,researchName,investAmount,description) values(?,?,?,?,?) ";
+			PreparedStatement pst = con.prepareStatement(query);
+			pst.setString(1,companyName);
+			pst.setInt(2,researchid);
+			pst.setString(3, researchName);
+			pst.setFloat(4, investAmount);
+			pst.setString(5, description);
+			pst.executeUpdate();
+			con.setAutoCommit(false);
+			con.commit();
+			output = "Inserted Successfully.";
+		}catch(Exception e) {
+			output ="Error while inserting the item.";
+			System.err.println(e.getMessage());
+		}
 		
 		return output;
 	}
