@@ -29,12 +29,12 @@ public class CartService {
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String insert(@FormParam("projCode") String projCode,
-			@FormParam("projName") String projName,
+	public String insert(@FormParam("researchID") String researchID,
+			@FormParam("researchName") String researchName,
 			@FormParam("Amount") String Amount,
 			@FormParam("Description") String Description)
 	{
-		String output = cartObj.insert(projCode, projName, Amount, Description);
+		String output = cartObj.insert(researchID, researchName, Amount, Description);
 		return output;
 	}
 	
@@ -48,11 +48,11 @@ public class CartService {
 		JsonObject cartObject = new JsonParser().parse(cartData).getAsJsonObject();
 		//Read the values from the JSON object
 		String ID = cartObject.get("ID").getAsString();
-		String projCode = cartObject.get("projCode").getAsString();
-		String projName = cartObject.get("projName").getAsString();
+		String researchID = cartObject.get("researchID").getAsString();
+		String researchName = cartObject.get("researchName").getAsString();
 		String Amount = cartObject.get("Amount").getAsString();
 		String Description = cartObject.get("Description").getAsString();
-		String output = cartObj.update(ID, projCode, projName, Amount, Description);
+		String output = cartObj.update(ID, researchID, researchName, Amount, Description);
 		return output;
 	}
 	

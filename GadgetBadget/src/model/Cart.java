@@ -17,7 +17,7 @@ public class Cart {
 		{e.printStackTrace();}
 		return con;
 	}
-	public String insert(String code, String name, String price, String desc)
+	public String insert(String researchID, String name, String price, String desc)
 	{
 		String output = "";
 		try
@@ -27,12 +27,12 @@ public class Cart {
 			{return "Error while connecting to the database for inserting."; }
 			// create a prepared statement
 			String query = " insert into cart"
-					+ "			(`ID`,`projCode`,`projName`,`Amount`,`Description`)"
+					+ "			(`ID`,`researchID`,`researchName`,`Amount`,`Description`)"
 					+ " values (?, ?, ?, ?, ?)";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 			// binding values
 			preparedStmt.setInt(1, 0);
-			preparedStmt.setString(2, code);
+			preparedStmt.setString(2, researchID);
 			preparedStmt.setString(3, name);
 			preparedStmt.setDouble(4, Double.parseDouble(price));
 			preparedStmt.setString(5, desc);
@@ -57,7 +57,7 @@ public class Cart {
 			if (con == null)
 			{return "Error while connecting to the database for reading."; }
 			// Prepare the html table to be displayed
-			output = "<table border='1'><tr><th>proj Code</th><th>proj Name</th>" +
+			output = "<table border='1'><tr><th>research ID</th><th>research Name</th>" +
 					"<th>Amount</th>" +
 					"<th>Description</th>" +
 					"<th>Update</th><th>Remove</th></tr>";
@@ -68,13 +68,13 @@ public class Cart {
 			while (rs.next())
 			{
 				String ID = Integer.toString(rs.getInt("ID"));
-				String projCode = rs.getString("projCode");
-				String projName = rs.getString("projName");
+				String researchID = rs.getString("researchID");
+				String researchName = rs.getString("researchName");
 				String Amount = Double.toString(rs.getDouble("Amount"));
 				String Description = rs.getString("Description");
 				// Add into the html table
-				output += "<tr><td>" + projCode + "</td>";
-				output += "<td>" + projName + "</td>";
+				output += "<tr><td>" + researchID + "</td>";
+				output += "<td>" + researchName + "</td>";
 				output += "<td>" + Amount + "</td>";
 				output += "<td>" + Description + "</td>";
 				// buttons
@@ -97,7 +97,7 @@ public class Cart {
 		}
 		return output;
 	}
-	public String update(String ID, String code, String name, String price, String desc)
+	public String update(String ID, String rId, String name, String price, String desc)
 	
 	{
 		String output = "";
@@ -107,11 +107,11 @@ public class Cart {
 			if (con == null)
 			{return "Error while connecting to the database for updating."; }
 			// create a prepared statement
-			String query = "UPDATE cart SET projCode=?,projName=?,Amount=?,Description=?"
+			String query = "UPDATE cart SET researchID=?,researchName=?,Amount=?,Description=?"
 					+ "WHERE ID=?";
 							PreparedStatement preparedStmt = con.prepareStatement(query);
 			// binding values
-			preparedStmt.setString(1, code);
+			preparedStmt.setString(1, rId);
 			preparedStmt.setString(2, name);
 			preparedStmt.setDouble(3, Double.parseDouble(price));
 			preparedStmt.setString(4, desc);
