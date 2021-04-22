@@ -20,7 +20,7 @@ public class CartService {
 	@GET
 	@Path("/")
 	@Produces(MediaType.TEXT_HTML)
-	public String readItems()
+	public String read()
 	{
 		return cartObj.read();
 	}
@@ -29,7 +29,7 @@ public class CartService {
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String insertItem(@FormParam("projCode") String projCode,
+	public String insert(@FormParam("projCode") String projCode,
 			@FormParam("projName") String projName,
 			@FormParam("Amount") String Amount,
 			@FormParam("Description") String Description)
@@ -42,7 +42,7 @@ public class CartService {
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String updateItem(String cartData)
+	public String update(String cartData)
 	{
 		//Convert the input string to a JSON object
 		JsonObject cartObject = new JsonParser().parse(cartData).getAsJsonObject();
@@ -60,7 +60,7 @@ public class CartService {
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_XML)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String deleteItem(String cartData)
+	public String delete(String cartData)
 	{
 		//Convert the input string to an XML document
 		Document doc = Jsoup.parse(cartData, "", Parser.xmlParser());
