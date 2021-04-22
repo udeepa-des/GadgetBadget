@@ -17,7 +17,7 @@ public class Cart {
 		{e.printStackTrace();}
 		return con;
 	}
-	public String insertItem(String code, String name, String price, String desc)
+	public String insert(String code, String name, String price, String desc)
 	{
 		String output = "";
 		try
@@ -48,7 +48,7 @@ public class Cart {
 		}
 		return output;
 	}
-	public String readItems()
+	public String read()
 	{
 		String output = "";
 		try
@@ -97,7 +97,7 @@ public class Cart {
 		}
 		return output;
 	}
-	public String updateItem(String ID, String code, String name, String price, String desc)
+	public String update(String ID, String code, String name, String price, String desc)
 	
 	{
 		String output = "";
@@ -129,7 +129,7 @@ public class Cart {
 		return output;
 	}
 	
-	public String deleteItem(String cartID)
+	public String delete(String cartID)
 	{
 		String output = "";
 		try

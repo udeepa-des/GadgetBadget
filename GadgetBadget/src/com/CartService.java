@@ -22,7 +22,7 @@ public class CartService {
 	@Produces(MediaType.TEXT_HTML)
 	public String readItems()
 	{
-		return cartObj.readItems();
+		return cartObj.read();
 	}
 	
 	@POST
@@ -34,7 +34,7 @@ public class CartService {
 			@FormParam("Amount") String Amount,
 			@FormParam("Description") String Description)
 	{
-		String output = cartObj.insertItem(projCode, projName, Amount, Description);
+		String output = cartObj.insert(projCode, projName, Amount, Description);
 		return output;
 	}
 	
@@ -52,7 +52,7 @@ public class CartService {
 		String projName = cartObject.get("projName").getAsString();
 		String Amount = cartObject.get("Amount").getAsString();
 		String Description = cartObject.get("Description").getAsString();
-		String output = cartObj.updateItem(ID, projCode, projName, Amount, Description);
+		String output = cartObj.update(ID, projCode, projName, Amount, Description);
 		return output;
 	}
 	
@@ -66,7 +66,7 @@ public class CartService {
 		Document doc = Jsoup.parse(cartData, "", Parser.xmlParser());
 		//Read the value from the element <itemID>
 		String ID = doc.select("ID").text();
-		String output = cartObj.deleteItem(ID);
+		String output = cartObj.delete(ID);
 		return output;
 	}
 	
