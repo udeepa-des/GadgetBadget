@@ -60,4 +60,10 @@ public class Fund {
 		return output;
 	}
 	
+	public String insertFunds() {
+		String output = null ;
+		
+		return output;
+	}
+	
 }
