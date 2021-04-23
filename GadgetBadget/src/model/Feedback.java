@@ -157,10 +157,46 @@ public class Feedback {
 			 output = "Error while updating the Feedback Details.";
 			 System.err.println(e.getMessage());
 			 }
+			 
 			 return output;
-			 } 
+			 
+	 } 
 		
-	
+		
+		//create method to delete feedback details
+		
+		public String deleteFb(String ID) {
+			String output = "";
+
+			try {
+				Connection con = connect();
+				if (con == null) {
+					return "Error while connecting to the database for deleting.";
+				}
+
+				// create a prepared statement
+				
+				String query = "delete from feedb where ID=?";
+				PreparedStatement preparedStmt = con.prepareStatement(query);
+				
+				// binding values
+				
+				preparedStmt.setInt(1, Integer.parseInt(ID));
+
+				// execute the statement
+				
+				preparedStmt.execute();
+				con.close();
+				output = "Deleted successfully";
+
+			} catch (Exception e) {
+				output = "Error while deleting the Feedback Details.";
+				System.err.println(e.getMessage());
+			}
+
+			return output;
+		}
+		
 	
 	
 	
