@@ -120,12 +120,15 @@ public class User {
 					+ " where id=?";
 			
 			PreparedStatement pddstmt = con.prepareStatement(query);
+			
 			pddstmt.setString(1,Name);
 			pddstmt.setString(2,Address);
 			pddstmt.setString(3,Telephone);
 			pddstmt.setString(4,Email);
 			pddstmt.setString(5,UserName);
 			pddstmt.setString(6,Password);
+			pddstmt.setInt(7,Integer.parseInt(ID));
+			
 			
 			// execute the statement
 			pddstmt.executeUpdate();
@@ -135,7 +138,7 @@ public class User {
     	
     }catch (Exception e) {
     	
-    	output = "Error while inserting";
+    	output = "Error while updating.";
 		System.err.print(e.getMessage());
     }
     	    
