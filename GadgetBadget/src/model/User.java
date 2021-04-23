@@ -2,6 +2,7 @@ package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -71,6 +72,41 @@ public class User {
 		return output;
 		
 	}
+	
+    public String insertUser(String Name, String Address, String Telephone, String Email, String UserName,String Password) {
+		
+		String output = "" ;
+		
+		try {
+			Connection con = Connect();
+			if(con == null) {
+				return "Error while connecting to the database for inserting. "; 
+			}
+			
+			//create a prepard statement 
+			String query = "insert into userservice (Name,Address,Telephone,Email,UserName,Password) values(?,?,?,?,?,?)";
+			PreparedStatement pst = con.prepareStatement(query);
+			// binding values
+			pst.setString(1,Name);
+			pst.setString(2,Address);
+			pst.setString(3,Telephone);
+			pst.setString(4,Email);
+			pst.setString(5,UserName);
+			pst.setString(6,Password);
+			
+			// execute the statement
+			pst.executeUpdate();
+			con.setAutoCommit(false);
+			con.close();
+			output = "Inserted successfully";
+		}catch(Exception e) {
+			output = "Error while inserting the item.";
+			System.err.println(e.getMessage());
+		}
+		return output;
+		
+	}
+    
 	
 	
 	
