@@ -9,6 +9,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import model.User;
 
 @Path("/User")
@@ -35,6 +38,30 @@ public class UserService {
 			@FormParam("Password") String Password) {
 		String output = user.insertUser(Name, Address, Telephone, Email, UserName,Password);
 		return output;
+		
+	}
+	
+	@PUT
+	@Path("/update")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String updateUser(String UserData) {
+		
+		//Convert the input string to a JSON object
+		JsonObject fundObject = new JsonParser().parse(UserData).getAsJsonObject();
+		
+		//Read the values from the JSON object
+		String ID = fundObject.get("ID").getAsString();
+		String Name = fundObject.get("Name").getAsString();
+		String Address = fundObject.get("Address").getAsString();
+		String Telephone = fundObject.get("Telephone").getAsString();
+		String Email = fundObject.get("Email").getAsString();
+		String UserName = fundObject.get("UserName").getAsString();
+		String Password = fundObject.get("Password").getAsString();
+		
+		String output = user.UpdateUser(ID, Name, Address, Telephone, Email, UserName, Password);
+		return output;
+		
 		
 	}
 	
