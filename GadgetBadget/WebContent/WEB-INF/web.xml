@@ -38,7 +38,7 @@
 	</servlet>
 	<servlet-mapping>
  		<servlet-name>Jersey Web Application4</servlet-name>
- 		<url-pattern>/ProductService/*</url-pattern>
+ 		<url-pattern>/FeedbackService/*</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
