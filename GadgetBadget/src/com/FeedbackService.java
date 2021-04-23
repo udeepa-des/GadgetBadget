@@ -34,6 +34,7 @@ public class FeedbackService {
 	 return fObj.readIFb();
 	 }
 	
+	
 	// insert feedback details
 
 	@POST
@@ -48,7 +49,8 @@ public class FeedbackService {
 	{
 	 String output = fObj.insertFb(name, contactnum, email, comment, OvrlExp);
 	return output;
-	}
+	
+    }
 	
 	
 	//update feedback details
