@@ -107,10 +107,42 @@ public class User {
 		
 	}
     
+    public String UpdateUser(String ID,String Name, String Address, String Telephone, String Email, String UserName,String Password) {
+    	String output = "";
+		Connection con = Connect();
+		try{
+		
+			if(con == null) {
+				return "Error while connecting to the database for updating.";
+			}
+			// create a prepared statement
+			String query = "update userservice set Name=?, Address=?, Telephone=?, Email=?, UserName=?, Password=?"
+					+ " where id=?";
+			
+			PreparedStatement pddstmt = con.prepareStatement(query);
+			pddstmt.setString(1,Name);
+			pddstmt.setString(2,Address);
+			pddstmt.setString(3,Telephone);
+			pddstmt.setString(4,Email);
+			pddstmt.setString(5,UserName);
+			pddstmt.setString(6,Password);
+			
+			// execute the statement
+			pddstmt.executeUpdate();
+			con.setAutoCommit(false);
+			con.commit();
+			output = "Updated successfully.";
+    	
+    }catch (Exception e) {
+    	
+    	output = "Error while inserting the item.";
+		System.err.print(e.getMessage());
+    }
+    	    
+	return output;
 	
-	
-	
-	
+ }
+    
 	
 
 }
