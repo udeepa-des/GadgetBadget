@@ -53,16 +53,16 @@ public class UserService {
 	public String updateUser(String UserData) {
 		
 		//Convert the input string to a JSON object
-		JsonObject fundObject = new JsonParser().parse(UserData).getAsJsonObject();
+		JsonObject userObject = new JsonParser().parse(UserData).getAsJsonObject();
 		
 		//Read the values from the JSON object
-		String ID = fundObject.get("ID").getAsString();
-		String Name = fundObject.get("Name").getAsString();
-		String Address = fundObject.get("Address").getAsString();
-		String Telephone = fundObject.get("Telephone").getAsString();
-		String Email = fundObject.get("Email").getAsString();
-		String UserName = fundObject.get("UserName").getAsString();
-		String Password = fundObject.get("Password").getAsString();
+		String ID = userObject.get("ID").getAsString();
+		String Name = userObject.get("Name").getAsString();
+		String Address = userObject.get("Address").getAsString();
+		String Telephone = userObject.get("Telephone").getAsString();
+		String Email = userObject.get("Email").getAsString();
+		String UserName = userObject.get("UserName").getAsString();
+		String Password = userObject.get("Password").getAsString();
 		
 		String output = user.UpdateUser(ID, Name, Address, Telephone, Email, UserName, Password);
 		return output;
