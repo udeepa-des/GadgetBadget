@@ -19,6 +19,8 @@ import com.google.gson.JsonParser;
 
 import model.Feedback;
 
+
+@Path("/Feedbacks")
 public class FeedbackService {
 
 	// view feedback details
