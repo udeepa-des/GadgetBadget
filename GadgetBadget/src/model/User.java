@@ -142,7 +142,7 @@ public class User {
 	return output;
 	
  }
-    public String deleteFund(String ID) {
+    public String deleteUser(String ID) {
     	String output = "";
     	try {
     		
