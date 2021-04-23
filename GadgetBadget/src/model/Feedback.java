@@ -3,6 +3,8 @@ package model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class Feedback {
 	
@@ -59,6 +61,66 @@ public class Feedback {
 		}
 		return output;
 	}
+	
+	   //create method to read feedback Details
+	
+	public String readIFb() {
+		String output = "";
+		try {
+			Connection con = connect();
+			if (con == null) {
+				return "Error while connecting to the database for reading.";
+			}
+			// Prepare the HTML table to be displayed
+			
+
+			output = "<table border=‘1’ class=\"table table-dark\" ><tr><th>Customer Name</th>"
+					+ "<th>Contact Number</th><th>Email</th>" + "<th>Comments</th><th>Overall Experience</th>"    
+					+ "<th>Update</th><th>Remove</th></tr>";
+			String query = "select * from feedb";
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			
+			// iterate through the rows in the result set
+			
+			while (rs.next()) {
+				String ID = Integer.toString(rs.getInt("ID"));
+				String name = rs.getString("Name");
+				String contactnum = rs.getString("ContactNumber");
+				String email = rs.getString("Email");
+				String Comment = rs.getString("Comment");
+				String OvrlExp = rs.getNString("overallExperience");
+				
+				// Add into the HTML table
+				
+				output += "<tr><td>" + name + "</td>";
+				output += "<td>" + contactnum + "</td>";
+				output += "<td>" + email + "</td>";
+				output += "<td>" + Comment + "</td>";
+				output += "<td>" + OvrlExp + "</td>";
+				
+				// buttons
+				
+				output += "<td><input name='btnUpdate' "
+						+ " type='button' value='Update'class='btn btn-secondary'></td>"
+						+ "<td><form method='post' action='itemps.jsp'>" + "<input name='btnRemove' "
+						+ " type='submit' value='Remove'class='btn btn-danger'>" + "<input name='itemID' type='hidden' "
+						+ " value='" + ID + "'>" + "</form></td></tr>";
+			}
+			con.close();
+			con.close();
+			
+			// Complete the HTML table
+			
+			output += "</table>";
+		} catch (Exception e) {
+			output = "Error while reading the Feedback Details.";
+			System.err.println(e.getMessage());
+		}
+		return output;
+
+	}
+	
 	
 	
 	
