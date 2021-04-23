@@ -66,7 +66,7 @@ public class User {
 						output += "</table>";
 							
 		}catch(Exception e) {
-			output = "Error while reading the items.";
+			output = "Error while reading ";
 			System.err.println(e.getMessage());
 		}
 		return output;
@@ -100,7 +100,7 @@ public class User {
 			con.close();
 			output = "Inserted successfully";
 		}catch(Exception e) {
-			output = "Error while inserting the item.";
+			output = "Error while inserting ";
 			System.err.println(e.getMessage());
 		}
 		return output;
@@ -135,13 +135,42 @@ public class User {
     	
     }catch (Exception e) {
     	
-    	output = "Error while inserting the item.";
+    	output = "Error while inserting";
 		System.err.print(e.getMessage());
     }
     	    
 	return output;
 	
  }
+    public String deleteFund(String ID) {
+    	String output = "";
+    	try {
+    		
+    		Connection con = Connect();
+    		if(con==null) {
+				return "Error while connecting to database for deleting.";
+				
+		}
+    		// create a prepared statement
+    		String query = "delete from userservice where ID=?";
+			PreparedStatement pddstmt = con.prepareStatement(query);
+			
+			//binding values
+			pddstmt.setInt(1, Integer.parseInt(ID));
+			
+			// execute the statement
+			pddstmt.executeUpdate();
+			con.setAutoCommit(false);
+			con.commit();
+			output = "Deleted Successfully";
+			
+    	}catch(Exception e) {
+    		
+    		output = "Error while deleting the userservice.";
+			System.err.print(e.getMessage());
+    	}
+    	return output;
+    }
     
 	
 
