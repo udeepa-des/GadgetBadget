@@ -26,6 +26,8 @@ public class ResearchService {
 		return researchObj.readResearch();
 	}
 	
+	//POST
+	
 	@POST
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
