@@ -37,9 +37,9 @@ public class Fund {
 			
 			while(rs.next()) {
 				String ID = Integer.toString(rs.getInt("id"));
-				String companyName = rs.getString("companyName");
-				String researchID = Integer.toString(rs.getInt("researchid"));
-				String researchName = rs.getString("researchName");
+				String companyName = rs.getString("investorid");
+				String researchID = Integer.toString(rs.getInt("investorName"));
+				String researchName = rs.getString("researchid");
 				String invetmentAmount = Double.toString(rs.getDouble("investAmount"));
 				String description = rs.getString("description"); 
 				
