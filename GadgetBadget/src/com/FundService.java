@@ -53,13 +53,12 @@ public class FundService {
 		JsonObject fundObject = new JsonParser().parse(fundData).getAsJsonObject();
 		
 		String id = fundObject.get("id").getAsString();
-		String companyName = fundObject.get("companyName").getAsString();
-		String researchID = fundObject.get("researchID").getAsString();
-		String researcherName = fundObject.get("researcherName").getAsString();
+		String researchid = fundObject.get("researchid").getAsString();
+		String researchName = fundObject.get("researchName").getAsString();
 		String investAmount = fundObject.get("investAmount").getAsString();
 		String description = fundObject.get("description").getAsString();
 		
-		String output = fund.updateFunds(id, companyName, researchID, researcherName, investAmount, description);
+		String output = fund.updateFunds(id, researchid, researchName, investAmount, description);
 
 		return output;
 	}

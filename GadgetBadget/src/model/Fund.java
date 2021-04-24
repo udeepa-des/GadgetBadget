@@ -85,7 +85,7 @@ public class Fund {
 		return output;
 	}
 	
-	public String updateFunds(String ID,String companyName,String researchid, String researchName, String investAmount, String description) {
+	public String updateFunds(String ID,String researchid,String researchName, String invetmentAmount, String description) {
 		String output = "";
 		Connection con = connect();
 		
@@ -95,17 +95,16 @@ public class Fund {
 				return "Error while connecting to the database for updating.";
 			}
 			
-			String query = "update funds set companyName=?, researchid=?, researchName=?, investAmount=?, description=?"
+			String query = "update funds set researchid=?, researchName=?, investAmount=?, description=?"
 					+ " where id=?";
 			
 			PreparedStatement pdstmt = con.prepareStatement(query);
 			
-			pdstmt.setString(1,companyName);
-			pdstmt.setInt(2,Integer.parseInt(researchid));
-			pdstmt.setString(3, researchName);
-			pdstmt.setDouble(4, Double.parseDouble(investAmount));
-			pdstmt.setString(5, description);
-			pdstmt.setInt(6,Integer.parseInt(ID));
+			pdstmt.setString(1,researchid);
+			pdstmt.setString(2,researchName);
+			pdstmt.setFloat(3, Float.parseFloat(invetmentAmount));
+			pdstmt.setString(4, description);
+			pdstmt.setInt(5,Integer.parseInt(ID));
 			pdstmt.executeUpdate();
 			con.setAutoCommit(false);
 			con.commit();
