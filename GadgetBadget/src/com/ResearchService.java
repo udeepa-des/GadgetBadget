@@ -43,6 +43,8 @@ public class ResearchService {
 		return output;
 	}
 	
+	//PUT
+	
 	@PUT
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -62,6 +64,7 @@ public class ResearchService {
 		String output = researchObj.updateResearch(RID, rName, rPhone, rEmail, rAddress,projectName, rCost);
 		return output;
 	}
+	
 	//Delete
 	
 	@DELETE
