@@ -36,12 +36,11 @@ public class FundService {
 	@Path("/add")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String insertData(@FormParam("companyName") String companyName,
-			@FormParam("researchID") String researchID,
-			@FormParam("researcherName") String researcherName,
+	public String insertData(@FormParam("researchid") String researchID,
+			@FormParam("researchName") String researchName,
 			@FormParam("investAmount") String investAmount,
-			@FormParam("description") String description) {
-		String output = fund.insertFunds(companyName, researchID, researcherName, investAmount, description);
+			@FormParam("description") String description) { 
+		String output = fund.insertFunds(researchID, researchName, investAmount, description);
 		return output;
 	}
 	

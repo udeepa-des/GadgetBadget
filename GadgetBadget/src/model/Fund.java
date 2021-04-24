@@ -28,8 +28,8 @@ public class Fund {
 			if(con == null) {
 				return "Error while connecting to the database for reading";
 			}
-			output = "<table border='1'><tr><th>ID</th><th>Company Name</th><th>Research ID</th>"
-					+ "<th>Research Name</th><th>Invest Amount</th>"
+			output = "<table border='1'><tr><th>ID</th><th>Research ID</th><th>Research Name</th>"
+					+ "<th>Invest Amount</th>"
 					+ "<th>Description</th></tr>";
 			String query= "select* from funds";
 			Statement stmt = con.createStatement();
@@ -37,15 +37,13 @@ public class Fund {
 			
 			while(rs.next()) {
 				String ID = Integer.toString(rs.getInt("id"));
-				String companyName = rs.getString("investorid");
-				String researchID = Integer.toString(rs.getInt("investorName"));
-				String researchName = rs.getString("researchid");
-				String invetmentAmount = Double.toString(rs.getDouble("investAmount"));
+				String researchid = rs.getString("researchid");
+				String researchName = rs.getString("researchName");
+				String invetmentAmount = Float.toString(rs.getFloat("investAmount"));
 				String description = rs.getString("description"); 
 				
 				output += "<tr><td>"+ID+"</td>";
-				output += "<td>"+companyName+"</td>";
-				output += "<td>"+researchID+"</td>";
+				output += "<td>"+researchid+"</td>";
 				output += "<td>"+researchName+"</td>";
 				output += "<td>"+invetmentAmount+"</td>";
 				output += "<td>"+description+"</td>";
@@ -62,20 +60,19 @@ public class Fund {
 		return output;
 	}
 	
-	public String insertFunds(String companyName,String researchid, String researchName, String investAmount, String description) {
+	public String insertFunds(String researchid,String researchName, String invetmentAmount, String description) {
 		String output = "" ;
 		try {
 			Connection con = connect();
 			if(con == null) {
 				return "Error while connecting to the database for inserting. "; 
 			}
-			String query = "insert into funds (companyName,researchid,researchName,investAmount,description) values(?,?,?,?,?) ";
+			String query = "insert into funds (researchid,researchName,investAmount,description) values(?,?,?,?) ";
 			PreparedStatement pst = con.prepareStatement(query);
-			pst.setString(1,companyName);
-			pst.setInt(2,Integer.parseInt(researchid));
-			pst.setString(3, researchName);
-			pst.setDouble(4, Double.parseDouble(investAmount));
-			pst.setString(5, description);
+			pst.setString(1,researchid);
+			pst.setString(2,researchName);
+			pst.setFloat(3, Float.parseFloat(invetmentAmount));
+			pst.setString(4, description);
 			pst.executeUpdate();
 			con.setAutoCommit(false);
 			con.commit();
