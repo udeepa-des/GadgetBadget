@@ -60,6 +60,7 @@ public class ResearchService {
 		String output = researchObj.updateResearch(RID, rName, rPhone, rEmail, rAddress,projectName, rCost);
 		return output;
 	}
+	//Delete
 	
 	@DELETE
 	@Path("/")
