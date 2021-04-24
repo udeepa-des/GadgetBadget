@@ -44,9 +44,9 @@ public class CartService {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String update(String cartData)
 	{
-		//Convert the input string to a JSON object
+		//Convert string to a JSON object
 		JsonObject cartObject = new JsonParser().parse(cartData).getAsJsonObject();
-		//Read the values from the JSON object
+		//Read values from the JSON object
 		String ID = cartObject.get("ID").getAsString();
 		String researchID = cartObject.get("researchID").getAsString();
 		String researchName = cartObject.get("researchName").getAsString();
@@ -62,9 +62,9 @@ public class CartService {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String delete(String cartData)
 	{
-		//Convert the input string to an XML document
+		//Convert inputs to an XML document
 		Document doc = Jsoup.parse(cartData, "", Parser.xmlParser());
-		//Read the value from the element <itemID>
+		//Read the value from the element <ID>
 		String ID = doc.select("ID").text();
 		String output = cartObj.delete(ID);
 		return output;
