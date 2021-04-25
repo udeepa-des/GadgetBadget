@@ -53,7 +53,7 @@ public class Fund {
 			
 			output += "</table>";
 		}catch(Exception e) {
-			output = "Error while reading the info";
+			output = "Error while reading the details";
 			System.err.println(e.getMessage());
 			System.out.println(e);
 		}
