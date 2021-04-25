@@ -36,11 +36,11 @@ public class FundService {
 	@Path("/add")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String insertData(@FormParam("researchid") String researchID,
+	public String insertData(@FormParam("cartid") String cartID,
 			@FormParam("researchName") String researchName,
 			@FormParam("investAmount") String investAmount,
 			@FormParam("description") String description) { 
-		String output = fund.insertFunds(researchID, researchName, investAmount, description);
+		String output = fund.insertFunds(cartID, researchName, investAmount, description);
 		return output;
 	}
 	
@@ -53,12 +53,12 @@ public class FundService {
 		JsonObject fundObject = new JsonParser().parse(fundData).getAsJsonObject();
 		
 		String id = fundObject.get("id").getAsString();
-		String researchid = fundObject.get("researchid").getAsString();
+		String cartid = fundObject.get("cartid").getAsString();
 		String researchName = fundObject.get("researchName").getAsString();
 		String investAmount = fundObject.get("investAmount").getAsString();
 		String description = fundObject.get("description").getAsString();
 		
-		String output = fund.updateFunds(id, researchid, researchName, investAmount, description);
+		String output = fund.updateFunds(id, cartid, researchName, investAmount, description);
 
 		return output;
 	}
