@@ -78,7 +78,7 @@ public class Fund {
 			con.commit();
 			output = "Inserted Successfully.";
 		}catch(Exception e) {
-			output ="Error while inserting the item.";
+			output ="Error while inserting the fund.";
 			System.err.println(e.getMessage());
 		}
 		

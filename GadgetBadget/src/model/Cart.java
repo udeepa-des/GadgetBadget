@@ -43,7 +43,7 @@ public class Cart {
 		}
 		catch (Exception e)
 		{
-			output = "Error while inserting the item.";
+			output = "Error while inserting the cart.";
 			System.err.println(e.getMessage());
 		}
 		return output;
@@ -84,7 +84,7 @@ public class Cart {
 		}
 		catch (Exception e)
 		{
-			output = "Error while reading the items.";
+			output = "Error while reading the cart.";
 			System.err.println(e.getMessage());
 		}
 		return output;
